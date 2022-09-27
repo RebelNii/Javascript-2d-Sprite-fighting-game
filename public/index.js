@@ -9,83 +9,27 @@ c.fillRect(0, 0, canvas.width, canvas.height);
 
 const gravity = 0.7;
 
-/**
- * after game console is initialized
- * we want charac to drop from the top
- * gravity adds speed to var velocity
- */
+const background = new Sprite({
+  position:{
+    x:0,
+    y:0
+  },
+  imageSrc: './assets/sprite/background.png'
+});
 
-/**
- * Create a class to develope game characters
- * we'll use classes since we'll approach project from OOP perspertive
- */
-class Sprite {
-  //make constructor
-  constructor({ position, velocity, color = "blue", offset }) {
-    this.position = position; //set charac position(x,y);
-    this.velocity = velocity; //speed
-    this.height = 150;
-    this.width = 50;
-    this.lastKey;
-    this.color = color;
-    (this.attackBox = {
-      position: {
-        x: this.position.x,
-        y: this.position.y,
-      },
-      offset: offset,
-      width: 100,
-      height: 50,
-    }),
-      this.isAttacking,
-      (this.health = 100);
-  }
+const shop = new Sprite({
+  position:{
+    x:730,
+    y:230
+  },
+  imageSrc: './assets/sprite/shop.png',
+  scale: 2,
+  framesMax: 6
+})
 
-  draw() {
-    c.fillStyle = this.color; //
-    c.fillRect(this.position.x, this.position.y, this.width, this.height);
-
-    //attackBox
-    if (this.isAttacking) {
-      c.fillStyle = "red";
-      c.fillRect(
-        this.attackBox.position.x,
-        this.attackBox.position.y,
-        this.attackBox.width,
-        this.attackBox.height
-      );
-    }
-  }
-
-  update() {
-    this.draw();
-    this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
-    this.attackBox.position.y = this.position.y;
-    this.position.x += this.velocity.x; //how a charac moves on x axis
-    this.position.y += this.velocity.y; //how a charac moves on y axis
-    if (this.position.y + this.height + this.velocity.y >= canvas.height) {
-      this.velocity.y = 0;
-      /**
-       * this.position.y + this.height will give us height of charac
-       * if we add this.velocity.y we charac height and current position
-       * we prevent charac from overlooking the scope(height int his instance) of the game board
-       */
-    } else {
-      this.velocity.y += gravity;
-    }
-  }
-
-  attack() {
-    this.isAttacking = true;
-    setTimeout(() => {
-      this.isAttacking = false;
-    }, 100);
-  }
-}
-
-const player = new Sprite({
+const player = new Fighter({
   position: {
-    x: 0,
+    x: 5,
     y: 0,
   },
   velocity: {
@@ -98,7 +42,7 @@ const player = new Sprite({
   },
 }); //call a new instance of class to create player
 
-const enemy = new Sprite({
+const enemy = new Fighter({
   position: {
     x: 900,
     y: 0,
@@ -141,51 +85,18 @@ const keys = {
   },
 };
 
-function getWinner({ player, enemy,timerSet }) {
-  clearTimeout(timerSet);//function to stop timer after winner has been decided b4 game timer ends
-  if (player.health === enemy.health) {
-    document.getElementById("result").innerHTML = "TIE";
-    document.getElementById("result").style.display = "flex";
-  }else if (player.health >= enemy.health) {
-    document.getElementById("result").innerHTML = "Player One Wins";
-    document.getElementById("result").style.display = "flex";
-  }else if (player.health <= enemy.health) {
-    document.getElementById("result").innerHTML = "Player Two Wins";
-    document.getElementById("result").style.display = "flex";
-  }
-}
 
-const time = document.getElementById("timer");
-
-let timer = 20;
-let timerSet
-function gameTimer() {
-  timerSet = setTimeout(gameTimer, 1000);
-  if (timer > 0) {
-    timer--;
-    time.innerHTML = timer;
-  }
-
-  if (timer === 0) {
-    getWinner({player, enemy, timerSet});
-  }
-}
 
 gameTimer();
 
-function collision({ rec1, rec2 }) {
-  return (
-    rec1.attackBox.position.x + rec1.attackBox.width >= rec2.position.x &&
-    rec1.attackBox.position.x <= rec2.position.x + rec2.width &&
-    rec1.attackBox.position.y + rec1.attackBox.height >= rec2.position.y &&
-    rec1.attackBox.position.y <= rec2.position.y + rec2.height
-  );
-}
+
 
 function animateCharacters() {
   window.requestAnimationFrame(animateCharacters); //we loop
   c.fillStyle = "black";
   c.fillRect(0, 0, canvas.width, canvas.height); //we call this to prevent charac from drawing a line
+  background.update();
+  shop.update();
   player.update();
   enemy.update();
   player.velocity.x = 0;
