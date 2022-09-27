@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game</title>
+    <link rel="stylesheet" href="./output.css" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="parent container mx-auto text-center relative">
+      <div class="flex justify-center items-center w-full absolute top-0 px-3">
+        <!--Player 1 health bar-->
+        <div class="relative h-10 w-full flex justify-end">
+            <!--Player 2 health bar-->
+            <div  class="bg-blue-400 h-10 w-full rounded-l-sm"></div>
+            <div id="playerHealth" class=" absolute bg-yellow-500 h-15 top-0 right-0 w-full bottom-0 rounded"></div>
+          </div>
+        <!--Timer-->
+        <div id="timer" 
+        class="bg-red-700 h-28 w-28 shrink-0 rounded flex justify-center items-center text-2xl font-semibold text-white">10</div>
+        <div class="relative h-10 w-full">
+          <!--Player 2 health bar-->
+          <div  class="bg-green-400 h-10 rounded-r-sm"></div>
+          <div id="enemyHealth" class=" absolute bg-yellow-500 h-15 top-0 right-0 left-0 bottom-0 rounded"></div>
+        </div>
+      </div>
+      <div id="result" style="display: none;"
+      class="result absolute top-0 right-0 left-0 bottom-0 justify-center items-center text-white text-2xl font-semibold">Tie</div>
+      <canvas></canvas>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
