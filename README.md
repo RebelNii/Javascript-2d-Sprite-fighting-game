@@ -1,9 +1,9 @@
 ## About
 A 2D javaScript video game 
-Sprite environment setup from Itch.io
-Background Sprites by Brullov
-Sprite fighter Kenji by Luiz Melo
-Sprite fighter Mack by Luiz Melo
+Sprite environment setup from Itch.io,
+Background Sprites by Brullov,
+Sprite fighter Kenji by Luiz Melo,
+Sprite fighter Mack by Luiz Melo,
 
 ## 💼 Tech Stack
 

@@ -7,28 +7,39 @@
     <title>Game</title>
     <link rel="stylesheet" href="./output.css" />
     <style>
+      @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
       * {
         padding: 0;
         margin: 0;
+        box-sizing: border-box;
+        overflow: hidden;
       }
+
+      body{
+        font-family: 'Press Start 2P', cursive;
+        display: inline-block;
+        transform: translateX(17%);
+      }
+      
+      
     </style>
   </head>
-  <body class="bg-slate-700 mt-10">
-    <div class="parent container mx-auto text-center relative">
+  <body class="bg-slate-700 mt-8">
+    <div class="parent  text-center container mx-auto relative ">
       <div class="flex justify-center items-center w-full absolute top-0 px-3">
         <!--Player 1 health bar-->
         <div class="relative h-10 w-full flex justify-end">
-            <!--Player 2 health bar-->
-            <div  class="bg-blue-400 h-10 w-full rounded-l-sm"></div>
-            <div id="playerHealth" class=" absolute bg-yellow-500 h-15 top-0 right-0 w-full bottom-0 rounded"></div>
-          </div>
+          <!--Player 2 health bar-->
+          <div  class="bg-red-400 h-10 w-full rounded-l-sm"></div>
+          <div id="playerHealth" class="absolute bg-indigo-400 h-15 top-0 right-0 w-full bottom-0 rounded"></div>
+        </div>
         <!--Timer-->
         <div id="timer" 
-        class="bg-red-700 h-28 w-28 shrink-0 rounded flex justify-center items-center text-2xl font-semibold text-white">10</div>
+        class="bg-yellow-400 h-20 w-20 shrink-0 rounded flex justify-center items-center text-2xl font-semibold text-white">10</div>
         <div class="relative h-10 w-full">
           <!--Player 2 health bar-->
-          <div  class="bg-green-400 h-10 rounded-r-sm"></div>
-          <div id="enemyHealth" class=" absolute bg-yellow-500 h-15 top-0 right-0 left-0 bottom-0 rounded"></div>
+          <div  class="bg-red-400 h-10 rounded-r-sm"></div>
+          <div id="enemyHealth" class=" absolute bg-indigo-400 h-15 top-0 right-0 left-0 bottom-0 rounded"></div>
         </div>
       </div>
       <div id="result" style="display: none;"
@@ -36,6 +47,9 @@
       <canvas></canvas>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/gsap.min.js" 
+    integrity="sha512-gsEItzcNkWxfxHjr4BaEZAd9YuRWYjxnj7c/yukcZ0/nWehUb5TjJNyyv1ApCU2DFH/qgw+stFZHPOKnoQnIuQ==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="./assets/js/utilityFunctions.js"></script>
     <script src="./assets/js/classes.js"></script>
     <script src="index.js"></script>
